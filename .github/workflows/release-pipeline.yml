@@ -4,14 +4,6 @@ on:
     branches:
       - main
 jobs:
-  a-job:
-    runs-on: ubuntu-latest
-    steps: 
-      - shell: bash
-        env: 
-          MY_SECRET: ${{ secrets.MySecret }}
-        run: |
-          echo ">$MY_SECRET<"
   trunk-job:
       runs-on: ubuntu-latest
       environment: PROD
