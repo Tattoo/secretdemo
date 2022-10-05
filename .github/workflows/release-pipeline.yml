@@ -4,24 +4,17 @@ on:
     branches:
       - main
 jobs:
-  a-job:
-    runs-on: ubuntu-latest
-    steps: 
-      - shell: bash
-        env: 
-          MY_SECRET: ${{ secrets.MySecret }}
-        run: |
-          echo ">$MY_SECRET<"
   trunk-job:
       runs-on: ubuntu-latest
       environment: PROD
-      - shell: bash
-        env:
-          PROD_SECRET: ${{ secrets.PROD_SECRET }}
-          REPO_SECRET: ${{ secrets.MySecret }}
-        run: |
-          if [[ "$REPO_SECRET" == "$PROD_SECRET" ]]; then
-            echo "Hello from same secret"
-          else
-            echo "Hello from different secrets"
-          fi
+      steps:
+        - shell: bash
+          env:
+            PROD_SECRET: ${{ secrets.PROD_SECRET }}
+            REPO_SECRET: ${{ secrets.MySecret }}
+          run: |
+            if [[ "$REPO_SECRET" == "$PROD_SECRET" ]]; then
+              echo "Hello from same secret"
+            else
+              echo "Hello from different secrets"
+            fi
