@@ -1,17 +1,11 @@
 name: secrets-demo
 on: [push]
 jobs:
-  my-job:
+  branch-job:
     runs-on: ubuntu-latest
-    environment: PROD
     steps: 
       - shell: bash
         env: 
           MY_SECRET: ${{ secrets.MySecret }}
-        run: |
-          echo ">$MY_SECRET<"
-      - shell: bash
-        env:
-          MY_SECRET: ${{ secrets.PROD_SECRET }}
         run: |
           echo ">$MY_SECRET<"
